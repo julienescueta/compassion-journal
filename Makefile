@@ -10,13 +10,26 @@ dpl ?= deploy.env
 include $(dpl)
 export $(shell sed 's/=.*//' $(dpl))
 
+#build:
+#  @docker build -t ${IMG} .
+#  @docker tag ${IMG} ${LATEST}
+ 
+#push:
+#  @docker push ${NAME}
+ 
+#login:
+#  @docker log -u ${DOCKER_USER} -p ${DOCKER_PASS}
 
 
 # DOCKER TASKS
 # Build the container
 
 build: ## Build the container
-	docker build -t $(APP_NAME) .
+	docker build -t ${IMG} .
+	docker tag ${IMG} ${LATEST}
+
+push:
+	docker push $(REPO)
 
 run: ## Run container on port configured in `config.env`
 	docker run -i -t --rm --env-file=./config.env -p=$(HOST_PORT):$(CONTAINER_PORT) --name="$(APP_NAME)" $(APP_NAME)
