@@ -5,7 +5,7 @@ include $(cnf)
 export $(shell sed 's/=.*//' $(cnf))
 
 # import deploy config
-# You can change the default deploy config with `make cnf="deploy_special.env" release`
+# You can change the default deploy config with `make dpl="deploy_special.env" release`
 dpl ?= deploy.env
 include $(dpl)
 export $(shell sed 's/=.*//' $(dpl))
