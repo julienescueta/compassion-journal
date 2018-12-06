@@ -7,8 +7,9 @@ dotnet: 2.1.500
 services: docker
 
 script:
-- make build
-- make push
+  - bash docker_login
+  - make build
+  - make push
 
 env:
   matrix:
