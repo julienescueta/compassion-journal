@@ -5,16 +5,16 @@ EXPOSE 44364
 
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
-COPY CompassionJournal/CompassionJournal.csproj CompassionJournal/
-RUN dotnet restore CompassionJournal/CompassionJournal.csproj
-COPY . .
-WORKDIR /src/CompassionJournal
-RUN dotnet build CompassionJournal.csproj -c Release -o /app
+COPY CompassionJournalApp/CompassionJournalApp.csproj CompassionJournalApp/
+RUN dotnet restore CompassionJournalApp/CompassionJournalApp.csproj
+COPY . ./
+WORKDIR /src/CompassionJournalApp
+RUN dotnet build CompassionJournalApp.csproj -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish CompassionJournal.csproj -c Release -o /app
+RUN dotnet publish CompassionJournalApp.csproj -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "CompassionJournal.dll"]
+ENTRYPOINT ["dotnet", "CompassionJournalApp.dll"]

@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/CompassionJournal/CompassionJournal.csproj"
+                "${workspaceFolder}/CompassionJournalApp.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
