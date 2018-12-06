@@ -25,14 +25,17 @@ export $(shell sed 's/=.*//' $(dpl))
 # Build the container
 
 build: ## Build the container
-	docker build -t ${IMG} .
-	docker tag ${IMG} ${LATEST}
+	docker build -t ${NAME} .
+	docker tag ${LATEST} ${IMG}
 
 push:
-	docker push $(REPO)
+	docker push $(NAME)
 
 run: ## Run container on port configured in `config.env`
 	docker run -i -t --rm --env-file=./config.env -p=$(HOST_PORT):$(CONTAINER_PORT) --name="$(APP_NAME)" $(APP_NAME)
 
 clean: ## Clean the generated/compiles files
+	# CompassionJournal/bin
+	# CompassionJournal/obj
+
 	echo "nothing clean ..."
