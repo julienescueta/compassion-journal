@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "cj" {
-  ami           = "ami-b52674cd"
+  ami           = "ami-08939e7eda6431140"
   instance_type = "t2.micro"
   key_name      = "compassionjournal-aws-key"
   vpc_security_group_ids = [
